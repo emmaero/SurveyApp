@@ -1,0 +1,50 @@
+﻿@model SurveyResponse
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+
+<h1>Survey</h1>
+
+<form method="post">
+    <div>
+        <label>Name:</label>
+        <input type="text" name="Name" value="@Model.Name" />
+        <span asp-validation-for="Name"></span>
+    </div>
+    <div>
+        <label>Age:</label>
+        <input type="number" name="Age" value="@Model.Age" />
+        <span asp-validation-for="Age"></span>
+    </div>
+@*    <div>
+        <label>Gender:</label>
+        <select name="Gender">
+            <option value="">-- Select --</option>
+            <option value="Male" @(Model.Gender == "Male" ? "selected" : "")>Male</option>
+            <option value="Female" @(Model.Gender == "Female" ? "selected" : "")>Female</option>
+        </select>
+        <span asp-validation-for="Gender"></span>
+    </div>*@
+    <div>
+        <label>Question:</label>
+        <div>
+            <input type="checkbox" name="Question" value="Option 1" @(Model.Question.Contains("Option 1") ? "checked" : "") />
+            <label>Option 1</label>
+        </div>
+        <div>
+            <input type="checkbox" name="Question" value="Option 2" @(Model.Question.Contains("Option 2") ? "checked" : "") />
+            <label>Option 2</label>
+        </div>
+        <div>
+            <input type="checkbox" name="Question" value="Option 3" @(Model.Question.Contains("Option 3") ? "checked" : "") />
+            <label>Option 3</label>
+        </div>
+        <span asp-validation-for="Question"></span>
+    </div>
+    <div>
+        <button type="submit">Submit</button>
+    </div>
+</form>
+
