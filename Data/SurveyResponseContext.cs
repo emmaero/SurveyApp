@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
-using SurveyTest.Models;
+using SurveyTest.Entities;
 
 namespace SurveyTest.Data
 {

@@ -14,12 +14,33 @@ namespace SurveyTest.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            return View();
+            var model = new Survey(){
+                Checkboxes = new List<QuestionOption>
+            {
+                new QuestionOption() {
+                    IsChecked = false,
+                    Description = "Yes",
+                    Value = "1",
+                },
+                 new QuestionOption() {
+                    IsChecked = false,
+                    Description = "Not sure",
+                    Value = "2",
+                },
+                  new QuestionOption() {
+                    IsChecked = false,
+                    Description = "No",
+                    Value = "3",
+                },
+
+            }
+                };
+            return View(model);
         }
         [HttpPost]
-        public async Task<IActionResult> Index(SurveyResponse surveyResponse)
+        public async Task<IActionResult> Index(Survey surveyResponse)
         {
-            var model = new SurveyResponse();
+            var model = new Survey();
             return View(model);
         }
 
