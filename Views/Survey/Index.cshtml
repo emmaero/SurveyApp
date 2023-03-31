@@ -9,40 +9,36 @@
 
 <form method="post">
     <div>
-        <label>Name:</label>
-        <input type="text" name="Name" value="@Model.Name" />
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control"/>
         <span asp-validation-for="Name"></span>
     </div>
     <div>
-        <label>Age:</label>
-        <input type="number" name="Age" value="@Model.Age" />
+        <label asp-for="Age"></label>
+        <input asp-for ="Age" />
         <span asp-validation-for="Age"></span>
     </div>
-@*    <div>
-        <label>Gender:</label>
-        <select name="Gender">
-            <option value="">-- Select --</option>
-            <option value="Male" @(Model.Gender == "Male" ? "selected" : "")>Male</option>
-            <option value="Female" @(Model.Gender == "Female" ? "selected" : "")>Female</option>
-        </select>
-        <span asp-validation-for="Gender"></span>
-    </div>*@
-    <div>
-        <label>Question:</label>
+    <div class="form-group">
+        <label asp-for="Gender" class="control-label"></label>
         <div>
-            <input type="checkbox" name="Question" value="Option 1" @(Model.Question.Contains("Option 1") ? "checked" : "") />
-            <label>Option 1</label>
+            <input type="radio" asp-for="Gender" value="Male" />Male
+            </br>
+            <input type="radio" asp-for="Gender" value="Female" />Female
         </div>
-        <div>
-            <input type="checkbox" name="Question" value="Option 2" @(Model.Question.Contains("Option 2") ? "checked" : "") />
-            <label>Option 2</label>
-        </div>
-        <div>
-            <input type="checkbox" name="Question" value="Option 3" @(Model.Question.Contains("Option 3") ? "checked" : "") />
-            <label>Option 3</label>
-        </div>
-        <span asp-validation-for="Question"></span>
+        <span asp-validation-for="Gender" class="text-danger"></span>
     </div>
+    <div class="form-group">
+        <label asp-for="Question" class="control-label">Are voting?</label>
+        <div>
+            Yes<input type="checkbox" name="Question" value="Yes" />
+            Not sure<input type="checkbox" name="Question" value="Not sure" />
+            No<input type="checkbox" name="Question" value="No" />
+           
+        </div>
+        <span asp-validation-for="Question" class="text-danger"></span>
+    </div>
+   
+
     <div>
         <button type="submit">Submit</button>
     </div>

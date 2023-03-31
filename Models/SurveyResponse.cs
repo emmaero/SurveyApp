@@ -4,6 +4,7 @@ namespace SurveyTest.Models
 {
     public class SurveyResponse
     {
+        public int Id { get; set; }
         [Required(ErrorMessage = "Please enter your name.")]
         public string Name { get; set; }
 
@@ -15,6 +16,6 @@ namespace SurveyTest.Models
         public string Gender { get; set; }
 
         [Required(ErrorMessage = "Please answer the question.")]
-        public List<string> Question { get; set; }
+        public List<Option> Question { get; set; }
     }
 }
