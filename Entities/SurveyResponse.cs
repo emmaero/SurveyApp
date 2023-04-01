@@ -12,7 +12,8 @@ namespace SurveyTest.Entities
         public int Age { get; set; }
 
         public string Gender { get; set; }
+        public string Question { get; set; }
 
-        public List<string> Question { get; set; }
+        // public List<QuestionOption> Question { get; set; }
     }
 }

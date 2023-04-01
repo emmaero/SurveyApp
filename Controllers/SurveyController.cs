@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SurveyTest.Data;
+using SurveyTest.Entities;
 using SurveyTest.Models;
 
 namespace SurveyTest.Controllers
@@ -14,41 +15,30 @@ namespace SurveyTest.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            var model = new Survey(){
-                Checkboxes = new List<QuestionOption>
-            {
-                new QuestionOption() {
-                    IsChecked = false,
-                    Description = "Yes",
-                    Value = "1",
-                },
-                 new QuestionOption() {
-                    IsChecked = false,
-                    Description = "Not sure",
-                    Value = "2",
-                },
-                  new QuestionOption() {
-                    IsChecked = false,
-                    Description = "No",
-                    Value = "3",
-                },
-
-            }
-                };
-            return View(model);
+       
+            return View();
         }
         [HttpPost]
         public async Task<IActionResult> Index(Survey surveyResponse)
         {
+            var survey = new SurveyResponse()
+            {
+                Name = surveyResponse.Name,
+                Age = surveyResponse.Age,
+                Gender = surveyResponse.Gender,
+                Question = surveyResponse.Question
+            };
+            // _dbContext.SurveyResponses.Add(surveyResponse);
+            // _dbContext.SaveChanges();
             var model = new Survey();
-            return View(model);
+            return RedirectToAction("Reponses");
         }
 
-        public IActionResult Results()
+        public IActionResult Responses()
         {
        
-            var result = _dbContext.SurveyResponses.ToList();
-            return View(result);
+            // var result = _dbContext.SurveyResponses.ToList();
+            return View();
         }
     }
 

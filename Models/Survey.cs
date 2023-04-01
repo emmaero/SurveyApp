@@ -16,8 +16,8 @@ namespace SurveyTest.Models
         public string Gender { get; set; }
 
         [Required(ErrorMessage = "Please answer the question.")]
-        public List<string> Question { get; set; }
-        public List<QuestionOption> Checkboxes { get; set; }
+        public string Question { get; set; }
+     
 
     }
 }

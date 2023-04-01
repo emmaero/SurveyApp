@@ -1,4 +1,4 @@
-﻿@model SurveyResponse
+﻿@model Survey
 @{
     ViewData["Title"] = "Index";
 }
@@ -8,7 +8,7 @@
 <h1>Survey</h1>
 
 <form method="post">
-    <div>
+    <div class="input-group mb-3">
         <label asp-for="Name"></label>
         <input asp-for="Name" class="form-control"/>
         <span asp-validation-for="Name"></span>
@@ -18,34 +18,37 @@
         <input asp-for ="Age" />
         <span asp-validation-for="Age"></span>
     </div>
-    <div class="form-group">
-        <label asp-for="Gender" class="control-label"></label>
-        <div>
-            <input type="radio" asp-for="Gender" value="Male" />Male
-            </br>
-            <input type="radio" asp-for="Gender" value="Female" />Female
+   <div class="form-group">
+    <label asp-for="Gender" class="control-label"></label>
+    <div class="form-check">
+            <input class="form-check-input" type="radio" asp-for="Gender" value="Male" />
+            <label class="form-check-label" >Male</label>
         </div>
-        <span asp-validation-for="Gender" class="text-danger"></span>
-    </div>
-    
-        <label asp-for="Question" class="control-label">Are voting?</label>
-        @foreach (var checkbox in Model.Checkboxes)
-        {
         <div class="form-check">
-            <input class="form-check-input" 
-            type="checkbox" 
-            name="Question" 
-            value="@checkbox.Value"
-            id="checkbox_@checkbox.Value"
-            checked="@checkbox.IsChecked">
-            <label class="form-check-label" for="checkbox_@checkbox.Value">@checkbox.Description</label>
+            <input class="form-check-input" type="radio" asp-for="Gender" value="Female" />
+            <label class="form-check-label" >Female</label>
+         </div>
+        <span asp-validation-for="Gender" class="text-danger"></span>
+   </div>
+   <div class="form-group">
+   <label asp-for="Question" class="control-label">Will you vote in the upcoming election?</label>
+       
+     
+        <div class="form-check">
+            <input class="form-check-input" type="radio" asp-for="Question" value="Yes" />
+            <label class="form-check-label" >Yes</label>
+         </div>
+         <div class="form-check">
+            <input class="form-check-input" type="radio" asp-for="Question" value="Not sure yet" />
+            <label class="form-check-label" >Not sure yet</label>
+            </div>
+            <div class="form-check">
+             <input class="form-check-input" type="radio" asp-for="Question" value="No" />
+             <label class="form-check-label" >No</label>
         </div>
-        }
-        
-        <span asp-validation-for="Question" class="text-danger"></span>
- 
+       <span asp-validation-for="Question" class="text-danger"></span>
    
-
+</div>
     <div>
         <button type="submit">Submit</button>
     </div>
