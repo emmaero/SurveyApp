@@ -1,16 +1,21 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using SurveyTest.Data;
 using SurveyTest.Entities;
 using SurveyTest.Models;
 
 namespace SurveyTest.Controllers
 {
+    
     public class SurveyController : Controller
     {
+        private readonly IMapper _mapper;
+
         private readonly SurveyResponseContext _dbContext;
-        public SurveyController(SurveyResponseContext dbContext)
+        public SurveyController(SurveyResponseContext dbContext, IMapper mapper)
         {
             _dbContext = dbContext;
+            _mapper = mapper;
         }
         [HttpGet]
         public IActionResult Index()
@@ -19,26 +24,25 @@ namespace SurveyTest.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Index(Survey surveyResponse)
+        public async Task<IActionResult> Index(Survey survey)
         {
-            var survey = new SurveyResponse()
-            {
-                Name = surveyResponse.Name,
-                Age = surveyResponse.Age,
-                Gender = surveyResponse.Gender,
-                Question = surveyResponse.Question
-            };
-            // _dbContext.SurveyResponses.Add(surveyResponse);
-            // _dbContext.SaveChanges();
+          if(ModelState.IsValid){
+            var surveyResponse = _mapper.Map<SurveyResponse>(survey);
+            _dbContext.SurveyResponses.Add(surveyResponse);
+            _dbContext.SaveChanges();
             var model = new Survey();
-            return RedirectToAction("Reponses");
+            return RedirectToAction("Responses");
+          }
+          return View();
+
         }
 
         public IActionResult Responses()
         {
        
-            // var result = _dbContext.SurveyResponses.ToList();
-            return View();
+         var result = _dbContext.SurveyResponses;
+            var model = _mapper.Map<IEnumerable<Survey>>(result);
+            return View(model);
         }
     }
 

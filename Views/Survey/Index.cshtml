@@ -2,20 +2,17 @@
 @{
     ViewData["Title"] = "Index";
 }
-
-
-
 <h1>Survey</h1>
 
-<form method="post">
+<form asp-controller="Survey" asp-action="Index" method="post">
     <div class="input-group mb-3">
         <label asp-for="Name"></label>
-        <input asp-for="Name" class="form-control"/>
+        <input asp-for="Name" type="text" class="form-control"/>
         <span asp-validation-for="Name"></span>
     </div>
     <div>
         <label asp-for="Age"></label>
-        <input asp-for ="Age" />
+        <input asp-for ="Age" type="number" />
         <span asp-validation-for="Age"></span>
     </div>
    <div class="form-group">
@@ -31,7 +28,7 @@
         <span asp-validation-for="Gender" class="text-danger"></span>
    </div>
    <div class="form-group">
-   <label asp-for="Question" class="control-label">Will you vote in the upcoming election?</label>
+   <label asp-for="Question" class="control-label"></label>
        
      
         <div class="form-check">
@@ -50,7 +47,7 @@
    
 </div>
     <div>
-        <button type="submit">Submit</button>
+        <input type="submit" value="Send">
     </div>
 </form>
 

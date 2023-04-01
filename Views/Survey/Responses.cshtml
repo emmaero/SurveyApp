@@ -1,0 +1,82 @@
+@model IEnumerable<Survey>
+@{
+    ViewData["Title"] = "Responses";
+}
+
+<h1>Election Survey</h1>
+
+<div class="row">
+    <table class="table">
+  <thead>
+    <tr>
+       <th scope="col">Name</th>
+      <th scope="col">Age</th>
+      <th scope="col">Gender</th>
+      <th scope="col">Response</th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach (var item in Model)
+    {
+    <tr>
+      <td>@item.Name</td>
+      <td>@item.Age</td>
+      <td>@item.Gender</td>
+      <td>@item.Question</td>
+    </tr>
+    }
+  </tbody>
+</table>
+
+</div>
+<div class="row">
+<div class="card">
+    <div class="card-header">
+        <div class="chart">
+            <canvas class="my-4 h-25" id="piechart"></canvas>
+        </div>
+    </div>
+</div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+
+
+<script type="text/javascript">
+var chartCanvas = document.getElementById('piechart');
+var yes = @Model.Count(x=>x.Question=="Yes")
+var notSure = @Model.Count(x=>x.Question=="Not sure yet")
+var no = @Model.Count(x=>x.Question=="No")
+var piechart = new Chart(chartCanvas, {
+    type: 'pie',
+    data:{
+        labels:["Yes","Not sure","No"],
+        datasets:[{
+            data:[yes,notSure,no],
+            borderWidth:0,
+            backgroundColor:[
+            'rgb(255,99,132)',
+            'rgb(54,162,235)',
+            'rgb(157,230,41)'
+            ],
+            hoverBackgroundColor:[
+            'rgb(255,99,132)',
+            'rgb(54,162,235)',
+            'rgb(157,230,41)'
+            ]
+        }]
+    },
+    options:{
+        responsive:true,
+        legend:{
+            position:"bottom",
+            labels:{
+                boxWidth:11,
+                fontColor:"#757681",
+                fontSize:11
+            }
+        }
+    }
+  
+})
+</script>
