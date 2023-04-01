@@ -6,10 +6,9 @@ namespace SurveyTest.Models
     {
         public int Id { get; set; }
         [StringLength(60, MinimumLength = 3)]
-        [Required(ErrorMessage = "Please enter your name.")]
         public string Name { get; set; }
 
-        [Required(ErrorMessage = "Please enter your age.")]
+        [Required]
         [Range(18, 100, ErrorMessage = "You must be between 18 and 100 years old.")]
         public int Age { get; set; }
 

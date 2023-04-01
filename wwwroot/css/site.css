@@ -16,3 +16,12 @@ html {
 body {
   margin-bottom: 60px;
 }
+.container-fluid {
+  padding: 0 !important;
+}
+.container {
+  max-width: 920px;
+}
+.main-color {
+  background-color: #673ab7;
+}

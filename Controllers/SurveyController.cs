@@ -31,7 +31,8 @@ namespace SurveyTest.Controllers
             _dbContext.SurveyResponses.Add(surveyResponse);
             _dbContext.SaveChanges();
             var model = new Survey();
-            return RedirectToAction("Responses");
+                TempData["success"] = "Thanks for your time";
+                return RedirectToAction("Responses");
           }
           return View();
 

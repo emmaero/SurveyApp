@@ -2,7 +2,9 @@
 @{
     ViewData["Title"] = "Responses";
 }
-
+@if(TempData["success"]!=null){
+    <h2>@TempData["success"]</h2>
+}
 <h1>Election Survey</h1>
 
 <div class="row">
