@@ -1,13 +1,13 @@
 @using SurveyTest.Entities;
 @using SurveyTest.Helpers;
-@model PaginatedList<SurveyResponse>
+@model PaginatedList<Survey>
 @{
     ViewData["Title"] = "Responses";
 }
 
-@* @if(TempData["success"]!=null){
+@if(TempData["success"]!=null){
     <h2>@TempData["success"]</h2>
-} *@
+}
 <h1>Election Survey</h1>
 
 <div class="row">
@@ -43,7 +43,7 @@
         Next
     </a>
 </div>
-<div class="row">
+@* <div class="row">
 <div class="card">
     <div class="card-header">
         <div class="chart">
@@ -51,8 +51,8 @@
         </div>
     </div>
 </div>
-</div>
-<script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+</div> *@
+@* <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
 
 
@@ -93,4 +93,15 @@ var piechart = new Chart(chartCanvas, {
     }
   
 })
-</script>
+</script> *@
+@* <partial name="_SurveyPieChart"/> *@
+@await Component.InvokeAsync("PieChart")
+<div id="pieChartZone">
+
+</div>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+@section Scripts{
+    <script>
+        $('#pieCharZone').load("Survey/ResponsesPieChart")
+    </script>
+}

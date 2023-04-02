@@ -364,3 +364,6 @@ FodyWeavers.xsd
 .DS_Store
 .vscode/launch.json
 .vscode/tasks.json
+survey.db-shm
+.gitignore
+survey.db-wal

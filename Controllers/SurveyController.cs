@@ -44,11 +44,18 @@ namespace SurveyTest.Controllers
         public IActionResult Responses(int? pageNumber)
         {
             int pageSize = 5;
-            var result = PaginatedList<SurveyResponse>.Create(_dbContext.SurveyResponses.ToList(),
+            var result = PaginatedList<Survey>.Create(_mapper.Map<IEnumerable<Survey>>(_dbContext.SurveyResponses).ToList(),
             pageNumber ?? 1, pageSize);
             // var model = _mapper.Map<IEnumerable<Survey>>(result).ToPagedList(i ?? 1,5);
             return View(result);
         }
+           public IActionResult ResponsesPieChart()
+        {
+
+            var model = _mapper.Map<IEnumerable<Survey>>(_dbContext.SurveyResponses).ToList();
+            return PartialView("_SurveyPieChart",model);
+        }
+        
     }
 
 }
