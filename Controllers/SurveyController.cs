@@ -44,7 +44,7 @@ namespace SurveyTest.Controllers
             int pageSize = 5;
             var result = PaginatedList<SurveyResponseDTO>.Create(_mapper.Map<IEnumerable<SurveyResponseDTO>>(_dbContext.SurveyResponses).ToList(),
             pageNumber ?? 1, pageSize);
-            // var model = _mapper.Map<IEnumerable<Survey>>(result).ToPagedList(i ?? 1,5);
+
             return View(result);
         }
            public IActionResult ResponsesPieChart()
