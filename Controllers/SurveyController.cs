@@ -25,13 +25,13 @@ namespace SurveyTest.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Index(Survey survey)
+        public async Task<IActionResult> Index(SurveyResponseDTO survey)
         {
           if(ModelState.IsValid){
             var surveyResponse = _mapper.Map<SurveyResponse>(survey);
             _dbContext.SurveyResponses.Add(surveyResponse);
             _dbContext.SaveChanges();
-            var model = new Survey();
+            var model = new SurveyResponseDTO();
                 TempData["success"] = "Thanks for your time";
                 return RedirectToAction("Responses");
           }
@@ -42,7 +42,7 @@ namespace SurveyTest.Controllers
         public IActionResult Responses(int? pageNumber)
         {
             int pageSize = 5;
-            var result = PaginatedList<Survey>.Create(_mapper.Map<IEnumerable<Survey>>(_dbContext.SurveyResponses).ToList(),
+            var result = PaginatedList<SurveyResponseDTO>.Create(_mapper.Map<IEnumerable<SurveyResponseDTO>>(_dbContext.SurveyResponses).ToList(),
             pageNumber ?? 1, pageSize);
             // var model = _mapper.Map<IEnumerable<Survey>>(result).ToPagedList(i ?? 1,5);
             return View(result);
@@ -50,7 +50,7 @@ namespace SurveyTest.Controllers
            public IActionResult ResponsesPieChart()
         {
 
-            var model = _mapper.Map<IEnumerable<Survey>>(_dbContext.SurveyResponses).ToList();
+            var model = _mapper.Map<IEnumerable<SurveyResponseDTO>>(_dbContext.SurveyResponses).ToList();
             return PartialView("_SurveyPieChart",model);
         }
         

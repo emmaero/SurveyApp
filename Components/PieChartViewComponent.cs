@@ -19,7 +19,7 @@ namespace SurveyTest.Components
             _dbContext = dbContext;
         }
         public async Task<IViewComponentResult> InvokeAsync(){
-            var model = _mapper.Map<IEnumerable<Survey>>(_dbContext.SurveyResponses).ToList();
+            var model = _mapper.Map<IEnumerable<SurveyResponseDTO>>(_dbContext.SurveyResponses).ToList();
             
             return View(model);
         }

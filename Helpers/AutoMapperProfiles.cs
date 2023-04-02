@@ -12,8 +12,8 @@ namespace SurveyTest.Helpers
     {
         public AutoMapperProfiles()
         {
-            CreateMap<SurveyResponse, Survey>();
-             CreateMap<Survey, SurveyResponse>();
+            CreateMap<SurveyResponse, SurveyResponseDTO>();
+             CreateMap<SurveyResponseDTO, SurveyResponse>();
         }
     }
 }

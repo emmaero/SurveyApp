@@ -2,7 +2,7 @@
 
 namespace SurveyTest.Models
 {
-    public class Survey
+    public class SurveyResponseDTO
     {
         public int Id { get; set; }
         [StringLength(60, MinimumLength = 3)]
