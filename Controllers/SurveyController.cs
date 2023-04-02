@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using SurveyTest.Data;
 using SurveyTest.Entities;
 using SurveyTest.Models;
+using X.PagedList.Mvc;
+using X.PagedList;
+using SurveyTest.Helpers;
 
 namespace SurveyTest.Controllers
 {
@@ -38,12 +41,13 @@ namespace SurveyTest.Controllers
 
         }
 
-        public IActionResult Responses()
+        public IActionResult Responses(int? pageNumber)
         {
-       
-         var result = _dbContext.SurveyResponses;
-            var model = _mapper.Map<IEnumerable<Survey>>(result);
-            return View(model);
+            int pageSize = 5;
+            var result = PaginatedList<SurveyResponse>.Create(_dbContext.SurveyResponses.ToList(),
+            pageNumber ?? 1, pageSize);
+            // var model = _mapper.Map<IEnumerable<Survey>>(result).ToPagedList(i ?? 1,5);
+            return View(result);
         }
     }
 
