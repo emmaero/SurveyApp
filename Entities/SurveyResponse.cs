@@ -14,6 +14,6 @@ namespace SurveyTest.Entities
         public string Gender { get; set; }
         public string Question { get; set; }
 
-        // public List<QuestionOption> Question { get; set; }
+    
     }
 }

@@ -25,3 +25,13 @@ body {
 .main-color {
   background-color: #673ab7;
 }
+.btn-main-color {
+  color: #fff;
+  background-color: #673ab7;
+  border-color: #673ab7;
+}
+.btn-main-color:hover {
+  color: #fff;
+  background-color: #7049b5;
+  border-color: #673ab7;
+}

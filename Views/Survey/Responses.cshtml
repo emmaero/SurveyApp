@@ -8,8 +8,9 @@
 @if(TempData["success"]!=null){
     <h2>@TempData["success"]</h2>
 }
-<h1>Election Survey</h1>
-
+<h1 class="text-center p-3">Election Survey</h1>
+@if (Model != null && Model.Count() != 0)
+{
 <div class="row">
     <table class="table">
   <thead>
@@ -36,72 +37,19 @@
         var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
         var nextDisabled = !Model.HasNextPage ? "disabled" : "";
     }
-    <a asp-action="Responses" asp-route-pageNumber="@(Model.PageIndex-1)" class="btn btn-default @prevDisabled">
+  
+</div>
+<div class="">
+      <a asp-action="Responses" asp-route-pageNumber="@(Model.PageIndex-1)" class="btn btn-default @prevDisabled">
         Previous
     </a>
         <a asp-action="Responses" asp-route-pageNumber="@(Model.PageIndex+1)" class="btn btn-default @nextDisabled">
         Next
     </a>
 </div>
-@* <div class="row">
-<div class="card">
-    <div class="card-header">
-        <div class="chart">
-            <canvas class="my-4 h-25" id="piechart"></canvas>
-        </div>
-    </div>
-</div>
-</div> *@
-@* <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
 
-
-<script type="text/javascript">
-var chartCanvas = document.getElementById('piechart');
-var yes = @Model.Count(x=>x.Question=="Yes")
-var notSure = @Model.Count(x=>x.Question=="Not sure yet")
-var no = @Model.Count(x=>x.Question=="No")
-var piechart = new Chart(chartCanvas, {
-    type: 'pie',
-    data:{
-        labels:["Yes","Not sure","No"],
-        datasets:[{
-            data:[yes,notSure,no],
-            borderWidth:0,
-            backgroundColor:[
-            'rgb(255,99,132)',
-            'rgb(54,162,235)',
-            'rgb(157,230,41)'
-            ],
-            hoverBackgroundColor:[
-            'rgb(255,99,132)',
-            'rgb(54,162,235)',
-            'rgb(157,230,41)'
-            ]
-        }]
-    },
-    options:{
-        responsive:true,
-        legend:{
-            position:"bottom",
-            labels:{
-                boxWidth:11,
-                fontColor:"#757681",
-                fontSize:11
-            }
-        }
-    }
-  
-})
-</script> *@
-@* <partial name="_SurveyPieChart"/> *@
 @await Component.InvokeAsync("PieChart")
-<div id="pieChartZone">
-
-</div>
-<script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
-@section Scripts{
-    <script>
-        $('#pieCharZone').load("Survey/ResponsesPieChart")
-    </script>
+}
+else{
+    <h1>No survey to display</h1>
 }

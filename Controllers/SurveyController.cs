@@ -3,8 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using SurveyTest.Data;
 using SurveyTest.Entities;
 using SurveyTest.Models;
-using X.PagedList.Mvc;
-using X.PagedList;
 using SurveyTest.Helpers;
 
 namespace SurveyTest.Controllers
